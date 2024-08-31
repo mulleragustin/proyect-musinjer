@@ -125,4 +125,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ['web-production-3928.up.railway.app']
+ALLOWED_HOSTS = ['web-production-3928.up.railway.app', 'localhost']
+
+CSRF_TRUSTED_ORIGINS = ['https://web-production-3928.up.railway.app','http://*']
