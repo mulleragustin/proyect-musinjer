@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Detalle Socio</title>
+{% endblock title %}
+    
+
+{% block content %}
+<div class="container">
+<h1>Detalle del Socio numero: {{socio.socio_id}}</h1> <hr>
+    {% if socio.apellido %}
+        <p><strong>Apellido:</strong> {{ socio.apellido }}</p>
+    {% endif %}
+    {% if socio.nombre %}
+        <p><strong>Nombre:</strong> {{ socio.nombre }}</p>
+    {% endif %}
+    {% if socio.dni %}
+        <p><strong>DNI:</strong> {{ socio.dni }}</p>
+    {% endif %}
+    {% if socio.sexo %}
+        <p><strong>Sexo:</strong> {{ socio.sexo }}</p>
+    {% endif %}
+    {% if socio.fec_nac %}
+        <p><strong>Fecha de Nacimiento:</strong> {{ socio.fec_nac }}</p>
+    {% endif %}
+    {% if socio.estado_civil %}
+        <p><strong>Estado Civil:</strong> {{ socio.estado_civil }}</p>
+    {% endif %}
+    {% if socio.direccion %}
+        <p><strong>Dirección:</strong> {{ socio.direccion }}</p>
+    {% endif %}
+    {% if socio.localidad %}
+        <p><strong>Localidad:</strong> {{ socio.localidad }}</p>
+    {% endif %}
+    {% if socio.celular %}
+        <p><strong>Celular:</strong> {{ socio.celular }}</p>
+    {% endif %}
+    {% if socio.telefono %}
+        <p><strong>Teléfono:</strong> {{ socio.telefono }}</p>
+    {% endif %}
+    {% if socio.email %}
+        <p><strong>Email:</strong> {{ socio.email }}</p>
+    {% endif %}
+    {% if socio.dependencia %}
+        <p><strong>Dependencia:</strong> {{ socio.dependencia }}</p>
+    {% endif %}
+    {% if socio.cargo %}
+        <p><strong>Cargo:</strong> {{ socio.cargo }}</p>
+    {% endif %}
+    {% if socio.funcion %}
+        <p><strong>Función:</strong> {{ socio.funcion }}</p>
+    {% endif %}
+    {% if socio.domicilio_laboral %}
+        <p><strong>Domicilio Laboral:</strong> {{ socio.domicilio_laboral }}</p>
+    {% endif %}
+    {% if socio.telefono_laboral %}
+        <p><strong>Teléfono Laboral:</strong> {{ socio.telefono_laboral }}</p>
+    {% endif %}
+
+    
+    {% if socio.grupo_set.all %}
+        
+    
+        
+    <h2>Grupo Familiar</h2> <hr>
+    <ul>
+        <table class="table table-sm">
+            <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Parentesco</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for grupo in socio.grupo_set.all %}
+                <tr>
+                <td>{{ grupo.dni_familiar }}</td>
+                <td>{{ grupo.apellido_familiar }}</td>
+                <td>{{ grupo.nombre_familiar }}</td>
+                
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        
+    </ul>
+    {% endif %}
+    
+    <a class="btn btn-success" href="{% url 'socios:socio_update' socio_id=socio.socio_id %}">Editar</a>
+    <a class="btn btn-primary"href="{% url 'socios:socio_create' %}">Crear Nuevo Socio</a>
+    <a class="btn btn-danger" href="{% url 'socios:socio_delete' socio_id=socio.socio_id %}">Eliminar</a>
+</div>
+{% endblock  %}
+    

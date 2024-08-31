@@ -1,0 +1,328 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>Socios</title>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>
+      {% if form.instance.pk %}
+        Editar Socio
+      {% else %}
+        Nuevo Socio
+      {% endif %}
+    </h1>
+    <br />
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token%}
+      <h6>Datos Afiliado</h6> <hr />
+      <div class="col-sm-12">
+        <div class="row g-3 mb-4 align-items-center">
+          <div class="col-sm-2">
+            <label class="form-label" for="socio_id">Socio N.</label>
+            {{ form.socio_id }}
+            
+            {% if form.socio_id.errors %}
+              <div class="invalid-feedback">
+                {% for error in form.socio_id.errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
+                
+            {% endif %}
+              
+            
+          </div>
+          <div class="col-sm-2">
+            <label class="form-label" for="caracter">Situacion</label>
+            {{ form.caracter }}
+            
+            {% if form.caracter.errors %}
+              <div class="invalid-feedback">
+                {% for error in form.caracter.errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
+              
+            {% endif %}
+          </div>
+          <div class="col-sm-3">
+            <label class="form-label" for="apellido">Apellidos</label>
+            {{ form.apellido }}
+            
+            {% if form.apellido.errors %}
+              <div class="invalid-feedback">
+                {% for error in form.apellido.errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
+              
+            {% endif %}
+          </div>
+          <div class="col-sm-3">
+            <label class="form-label" for="dni">Nombres</label>
+            {{ form.nombre }}
+            
+            {% if form.nombre.errors %}
+              <div class="invalid-feedback">
+                {% for error in form.nombre.errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
+              
+            {% endif %}
+
+          </div>
+          <div class="col-sm-2">
+            <label class="form-label" for="estado">Estado</label>
+            {{ form.estado }}
+            
+            {% if form.estado.errors %}
+              <div class="invalid-feedback">
+                {% for error in form.estado.errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
+              
+            {% endif %}
+        </div>
+        
+        <div class="row g-3 mb-4 align-items-center">
+          <div class="col-sm-2">
+            <label class="form-label" for="sexo">Sexo</label>
+            {{ form.sexo }}
+            
+            {% if form.sexo.errors %}
+              <div class="invalid-feedback">
+                {% for error in form.sexo.errors %}
+                 {{ error }}
+                {% endfor %}
+              </div>
+              
+            {% endif %}
+          </div>
+          <div class="col-sm-2">
+            <label class="form-label" for="dni">DNI</label>
+            {{ form.dni }}
+            
+            {% if form.dni.errors %}
+              <div class="invalid-feedback">
+                {% for error in form.dni.errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
+              
+            {% endif %}
+          </div>
+          <div class="col-sm-2">
+            <label class="form-label" for="fec_nac">Fecha de Nacimiento</label>
+            {{ form.fec_nac }}
+            
+            {% if form.fec_nac.errors %}
+              <div class="invalid-feedback">
+                {% for error in form.fec_nac.errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
+              
+            {% endif %}
+          </div>
+          <div class="col-sm-2">
+            <label class="form-label" for="estado_civil">Estado Civil</label>
+            {{ form.estado_civil }}
+            
+            {% if form.estado_civil.errors %}
+              <div class="invalid-feedback">
+                {% for error in form.estado_civil.errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
+              
+            {% endif %}
+          </div>
+          <div class="col-sm-2">
+            <label class="form-label" for="celular">Celular</label>
+            {{ form.celular }}
+            
+            {% if form.celular.errors %}
+              <div class="invalid-feedback">
+                {% for error in form.celular.errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
+              
+            {% endif %}
+          </div>
+          <div class="col-sm-2">
+            <label class="form-label" for="telefono">Teléfono</label>
+            {{ form.telefono }}
+            
+            {% if form.telefono.errors %}
+              <div class="invalid-feedback">
+                {% for error in form.telefono.errors %}
+                 {{ error }}
+                {% endfor %}
+              </div>
+              
+            {% endif %}
+          </div>
+        </div>
+        <div class="row g-3 mb-4 align-items-center">
+          <div class="col-sm-2">
+            <label class="form-label" for="localidad">Localidad</label>
+            {{ form.localidad }}
+            
+            {% if form.localidad.errors %}
+              <div class="invalid-feedback">
+                {% for error in form.localidad.errors %}
+                 {{ error }}
+                {% endfor %}
+              </div>
+              
+            {% endif %}
+          </div>
+          <div class="col-sm-3">
+            <label class="form-label" for="direccion">Dirección</label>
+            {{ form.direccion }}
+            
+            {% if form.direccion.errors %}
+              <div class="invalid-feedback">
+                {% for error in form.direccion.errors %}
+                 {{ error }}
+                {% endfor %}
+              </div>
+              
+            {% endif %}
+          </div>
+          <div class="col-sm-3">
+            <label class="form-label" for="email">Email</label>
+            {{ form.email }}
+            
+            
+            {% if form.email.errors %}
+              <div class="invalid-feedback">
+
+                {% for error in form.email.errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
+              
+            {% endif %}
+              
+
+          </div>
+        </div>
+
+        <h6>Datos Laborales</h6> <hr />
+        <br />
+        <div class="row g-3 mb-4 align-items-center">
+            <div class="col-sm-4">
+            <label class="form-label" for="dependencia">Dependencia</label>
+            {{ form.dependencia }}
+            {{ form.dependencia.errors }}
+          </div>
+          <div class="col-sm-4">
+            <label class="form-label" for="cargo">Cargo</label>
+            {{ form.cargo }}
+            {{ form.cargo.errors }}
+          </div>
+          <div class="col-sm-4">
+            <label class="form-label" for="funcion">Función</label>
+            {{ form.funcion }}
+            {{ form.funcion.errors }}
+          </div>
+        </div>
+        <div class="row g-3 mb-4 align-items-center">
+          <div class="col-sm-3">
+            <label class="form-label" for="domicilio_laboral">Domicilio Laboral</label>
+            {{ form.domicilio_laboral }}
+            {{ form.domicilio_laboral.errors }}
+          </div>
+          <div class="col-sm-3">
+            <label class="form-label" for="telefono_laboral">Teléfono Laboral</label>
+            {{ form.telefono_laboral }}
+            {{ form.telefono_laboral.errors }}
+          </div>
+        </div>
+      </div>
+      
+      <h6>Grupo Familiar</h6> <hr>
+      {{ formset.management_form }}
+      <div id="formset-container">
+        <table class="table table-sm">
+            <thead class="text-start">
+                <tr scope="row">
+                    <th scope="col">DNI</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Parentesco</th>
+                    <th><button class="btn btn-primary" id="agregar" type="button">Agregar</button></th>
+                </tr>  
+                
+            </thead>
+        
+            <tbody>
+              {% for form in formset.forms %}
+                <tr>
+                    <td>{{ form.dni_familiar }}</td>
+                    <td>{{ form.apellido_familiar }}</td>
+                    <td>{{ form.nombre_familiar }}</td>
+                    <td>{{ form.parentesco }}</td>
+                    <td><button type="button" class="btn btn-danger eliminar-fila">Eliminar Fila</button></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+      </div>
+      
+      <button type="submit" class="btn btn-success">Guardar</button>
+    </form>
+   
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let formIndex = 1; // Índice inicial basado en TOTAL_FORMS
+    
+        document.getElementById('agregar').addEventListener('click', function() {
+            const formContainer = document.querySelector('#formset-container tbody');
+            const newForm = document.querySelectorAll('#formset-container tbody tr')[0].cloneNode(true);
+    
+            // Actualizar los atributos name e id de los campos en la nueva fila
+            newForm.querySelectorAll('input').forEach(function(input) {
+                const name = input.getAttribute('name').replace('-0-', `-${formIndex}-`);
+                const id = input.getAttribute('id').replace('-0-', `-${formIndex}-`);
+                input.setAttribute('name', name);
+                input.setAttribute('id', id);
+                input.value = ''; // Limpiar el valor del campo
+            });
+    
+            formContainer.appendChild(newForm);
+    
+            // Incrementar el contador de formularios
+            formIndex++;
+            document.getElementById('id_grupo_set-TOTAL_FORMS').value = formIndex;
+    
+            // Agregar evento para eliminar fila en la nueva fila
+            addDeleteEvent(newForm);
+        });
+    
+        // Función para eliminar fila
+        function addDeleteEvent(row) {
+            row.querySelector('.eliminar-fila').addEventListener('click', function() {
+                row.remove();
+                // Disminuir el contador de formularios si eliminás la última fila
+                formIndex--;
+                document.getElementById('id_grupo_set-TOTAL_FORMS').value = formIndex;
+            });
+        }
+    
+        // Agregar evento de eliminar a la fila inicial
+        document.querySelectorAll('.eliminar-fila').forEach(function(button) {
+            addDeleteEvent(button.closest('tr'));
+        });
+    });
+    </script>
+    
+
+{% endblock %}
