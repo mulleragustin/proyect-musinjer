@@ -125,4 +125,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ['musinjer.up.railway.app']
+ALLOWED_HOSTS = ['web-production-3928.up.railway.app']
