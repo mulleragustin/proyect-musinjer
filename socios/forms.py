@@ -70,6 +70,7 @@ class SocioForm(forms.ModelForm):
     class Meta:
         model = Socio
         fields = "__all__"
+        exclude = ['created_by', 'modified_by', 'created_at', 'updated_at']
         widgets = {
             "socio_id": forms.NumberInput(
                 attrs={"class": "form-control form-control-sm"}
@@ -98,6 +99,15 @@ class SocioForm(forms.ModelForm):
                     field.widget.attrs["class"] += " is-invalid"
                 else:
                     field.widget.attrs["class"] += " is-valid"
+    
+    def save(self, commit=True, user=None):
+        socio = super(SocioForm, self).save(commit=False)
+        if not self.instance.pk:
+            socio.created_by = user
+        socio.modified_by = user
+        if commit:
+            socio.save()
+        return socio
 
 
 class GrupoForm(forms.ModelForm):

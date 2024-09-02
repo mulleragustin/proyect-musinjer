@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import User
+from django.utils import timezone
 
 class Caracter(models.Model):
     nombre = models.CharField(max_length=100)
@@ -45,9 +47,20 @@ class Socio(models.Model):
     domicilio_laboral = models.CharField(max_length=255, blank=True, null=True)
     telefono_laboral = models.IntegerField( blank=True, null=True)
     estado= models.CharField(choices=ESTADO_CHOICES, default='A', blank=False,max_length=1)
+    created_by = models.ForeignKey(User, related_name='socio_created_by', on_delete=models.SET_NULL, null=True, blank=True)
+    modified_by = models.ForeignKey(User, related_name='socio_modified_by', on_delete=models.SET_NULL, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
     
     def __str__(self):
         return f"{self.apellido} {self.nombre}"
+
+    def save(self, *args, **kwargs):
+        if not self.socio_id:
+            self.created_at = timezone.now()
+        self.updated_at = timezone.now()
+        super(Socio, self).save(*args, **kwargs)
 
 class Parentesco(models.Model):
     nombre = models.CharField(max_length=100)
