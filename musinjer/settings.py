@@ -130,6 +130,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ['web-production-3928.up.railway.app', 'localhost']
+ALLOWED_HOSTS = ['musinjer.up.railway.app', 'localhost']
 
-CSRF_TRUSTED_ORIGINS = ['https://web-production-3928.up.railway.app','http://*']
+CSRF_TRUSTED_ORIGINS = ['https://musinjer.up.railway.app','http://*']
