@@ -62,10 +62,10 @@ def socio_list(request):
 		sheet = workbook.active
 		sheet.title = 'Socios' + datetime.now().strftime('%Y%m%d')
 
-		headers = ['Socio ID', 'DNI', 'Apellido', 'Nombre', 'Localidad', 'Teléfono']
+		headers = ['Socio ID', 'DNI', 'Caracter', 'Apellido', 'Nombre', 'Sexo', 'Fecha de Nacimiento', 'Estado Civil', 'Dirección', 'Localidad', 'Celular', 'Teléfono', 'Email', 'Dependencia', 'Cargo', 'Función', 'Domicilio Laboral', 'Teléfono Laboral', 'Estado', 'Creado por', 'Modificado por', 'Fecha de Creación', 'Fecha de Actualización']
 		sheet.append(headers)
 		for socio in socios:
-			sheet.append([socio.socio_id, socio.dni, socio.apellido, socio.nombre, socio.localidad, socio.telefono])
+			sheet.append([socio.socio_id, socio.dni, socio.caracter, socio.apellido, socio.nombre, socio.sexo, socio.fec_nac, socio.estado_civil, socio.direccion, socio.localidad, socio.celular, socio.telefono, socio.email, socio.dependencia, socio.cargo, socio.funcion, socio.domicilio_laboral, socio.telefono_laboral, socio.estado, socio.created_by, socio.modified_by, socio.created_at, socio.updated_at])
 
 		response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
 		response['Content-Disposition'] = 'attachment; filename=socios.xlsx'
