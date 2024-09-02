@@ -1,1 +1,1 @@
-web:python manage.py collectstatic &&  gunicorn musinjer.wsgi
+web: python manage.py collectstatic &&  gunicorn musinjer.wsgi
