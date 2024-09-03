@@ -100,7 +100,7 @@ def socio_list(request):
 			sheet.append(row)
 
 		response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-		response['Content-Disposition'] = f'attachment; filename=socios{datetime.now().strftime("%Y%m%d")}.xlsx'
+		response['Content-Disposition'] = f'attachment; filename=socios-{datetime.now().strftime("%d")}-{datetime.now().strftime("%m")}-{datetime.now().strftime("%Y")}.xlsx'
 		workbook.save(response)
 		return response
 
