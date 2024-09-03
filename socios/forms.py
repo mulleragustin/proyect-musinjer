@@ -100,14 +100,7 @@ class SocioForm(forms.ModelForm):
                 else:
                     field.widget.attrs["class"] += " is-valid"
     
-    def save(self, commit=True, user=None):
-        socio = super(SocioForm, self).save(commit=False)
-        if not self.instance.pk:
-            socio.created_by = user
-        socio.modified_by = user
-        if commit:
-            socio.save()
-        return socio
+   
 
 
 class GrupoForm(forms.ModelForm):

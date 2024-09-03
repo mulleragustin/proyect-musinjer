@@ -19,7 +19,8 @@ def socio_create_update(request, socio_id=None):
 		form = SocioForm(request.POST, instance=socio)
 		formset = GrupoFormSet(request.POST, instance=socio)
 		if form.is_valid() and formset.is_valid():
-			socio = form.save(user=request.user)
+			socio.created_by = request.user
+			socio = form.save()
 			formset.instance = socio
 			formset.save()
 			return redirect('socios:socio_detail', socio_id=socio.socio_id)

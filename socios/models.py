@@ -56,12 +56,7 @@ class Socio(models.Model):
     def __str__(self):
         return f"{self.apellido} {self.nombre}"
 
-    def save(self, *args, **kwargs):
-        if not self.socio_id:
-            self.created_at = timezone.now()
-        self.updated_at = timezone.now()
-        super(Socio, self).save(*args, **kwargs)
-
+ 
 class Parentesco(models.Model):
     nombre = models.CharField(max_length=100)
 
