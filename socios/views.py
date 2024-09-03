@@ -7,28 +7,34 @@ from django.http import HttpResponse
 from datetime import datetime
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 @login_required
 def socio_create_update(request, socio_id=None):
-	if socio_id:
-		socio = get_object_or_404(Socio, pk=socio_id)
-	else:
-		socio = Socio()
-	
-	if request.method == 'POST':
-		form = SocioForm(request.POST, instance=socio)
-		formset = GrupoFormSet(request.POST, instance=socio)
-		if form.is_valid() and formset.is_valid():
-			socio.created_by = request.user
-			socio = form.save()
-			formset.instance = socio
-			formset.save()
-			return redirect('socios:socio_detail', socio_id=socio.socio_id)
-	else:
-		form = SocioForm(instance=socio)
-		formset = GrupoFormSet(instance=socio)
+    if socio_id:
+        socio = get_object_or_404(Socio, pk=socio_id)
+    else:
+        socio = Socio()
 
-	return render(request, 'socios.html', {'form': form, 'formset': formset})
+    if request.method == 'POST':
+        form = SocioForm(request.POST, instance=socio)
+        formset = GrupoFormSet(request.POST, instance=socio)
+        if form.is_valid() and formset.is_valid():
+            try:
+                socio.created_by = request.user
+                socio = form.save()
+                formset.instance = socio
+                formset.save()
+                return redirect('socios:socio_detail', socio_id=socio.socio_id)
+            except IntegrityError:
+                messages.error(request, 'El DNI o socio_id ya existe.')
+        else:
+            messages.error(request, 'Por favor corrige los errores en el formulario.')
+    else:
+        form = SocioForm(instance=socio)
+        formset = GrupoFormSet(instance=socio)
+
+    return render(request, 'socios.html', {'form': form, 'formset': formset})
 
 @login_required
 def socio_delete(request, socio_id):
@@ -94,11 +100,11 @@ def socio_list(request):
 			sheet.append(row)
 
 		response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-		response['Content-Disposition'] = 'attachment; filename=socios.xlsx'
+		response['Content-Disposition'] = f'attachment; filename=socios{datetime.now().strftime("%Y%m%d")}.xlsx'
 		workbook.save(response)
 		return response
 
-	paginator = Paginator(socios, 1)
+	paginator = Paginator(socios, 10)
 	page = request.GET.get('page')
 	socios = paginator.get_page(page)
 

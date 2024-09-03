@@ -99,6 +99,18 @@ class SocioForm(forms.ModelForm):
                     field.widget.attrs["class"] += " is-invalid"
                 else:
                     field.widget.attrs["class"] += " is-valid"
+
+    def clean_dni(self):
+        dni = self.cleaned_data.get('dni')
+        if Socio.objects.filter(dni=dni).exclude(pk=self.instance.pk).exists():
+            raise ValidationError('El DNI ya existe.')
+        return dni
+        
+    def clean_socio_id(self):
+        socio_id = self.cleaned_data.get('socio_id')
+        if Socio.objects.filter(socio_id=socio_id).exclude(pk=self.instance.pk).exists():
+            raise ValidationError('El socio_id ya existe.')
+        return socio_id
     
    
 
