@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="container">
-<h1>Detalle del Socio numero: {{socio.socio_id}}</h1> <hr>
+<h1>Detalle del Socio numero: {{socio.socio_id}} - {{socio.caracter}}</h1> <hr>
     {% if socio.apellido %}
         <p><strong>Apellido:</strong> {{ socio.apellido }}</p>
     {% endif %}
@@ -80,7 +80,7 @@
                 <td>{{ grupo.dni_familiar }}</td>
                 <td>{{ grupo.apellido_familiar }}</td>
                 <td>{{ grupo.nombre_familiar }}</td>
-                
+                <td>{{ grupo.parentesco}}</td>
                 </tr>
             {% endfor %}
             </tbody>

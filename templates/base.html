@@ -26,7 +26,7 @@
             </button>
     
             <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
-                <a class="navbar-brand col-lg-3 me-0" href="#">MUSINJER</a>
+                <a class="navbar-brand col-lg-3 me-0" href="{% url "home" %}">MUSINJER</a>
                 <ul class="navbar-nav col-lg-6 justify-content-lg-center">
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{% url 'home' %}">INICIO</a>
@@ -68,11 +68,11 @@
     {% block content %}
        
     {% endblock  %}
-    {% comment %} <footer class="bg-body-tertiary text-center text-lg-start">
+    <footer class="bg-body-tertiary text-center text-lg-start fixed-bottom">
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             © 2024 MUSINJER - desarrollado por Agustin Muller - contacto: agustinmuller98@gmail.com - 3624384200
         </div>
-    </footer> {% endcomment %}
+    </footer>
     <style>
         body {
             font-family: 'Inter', sans-serif;
