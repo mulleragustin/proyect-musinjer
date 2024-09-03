@@ -47,8 +47,8 @@ class Socio(models.Model):
     domicilio_laboral = models.CharField(max_length=255, blank=True, null=True)
     telefono_laboral = models.BigIntegerField( blank=True, null=True)
     estado= models.CharField(choices=ESTADO_CHOICES, default='A', blank=False,max_length=1)
-    created_by = models.ForeignKey(User, related_name='socio_created_by', on_delete=models.DO_NOTHING, null=True, blank=True)
-    modified_by = models.ForeignKey(User, related_name='socio_modified_by', on_delete=models.DO_NOTHING, null=True, blank=True)
+    created_by = models.ForeignKey(User, related_name='socio_created_by', on_delete=models.DO_NOTHING)
+    modified_by = models.ForeignKey(User, related_name='socio_modified_by', on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
